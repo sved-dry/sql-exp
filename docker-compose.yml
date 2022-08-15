@@ -1,14 +1,14 @@
 services:
   service:
     build: .
-    restart: "no"
+    restart: "on-failure"
     ports:
       - 8080:8080
     depends_on:
       - database
   database:
     image: "mysql:8.0"
-    restart: "no"
+    restart: "on-failure"
     ports:
       - 3306:3306
     environment:

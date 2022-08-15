@@ -10,15 +10,17 @@ public class Topic {
     private Long id;
     private String question;
     private String genre;
+    private Integer hits;
 
     public Topic() {
 
     }
 
-    public Topic(Long id, String question, String genre) {
+    public Topic(Long id, String question, String genre, Integer hits) {
         this.id = id;
         this.question = question;
         this.genre = genre;
+        this.hits = hits;
     }
 
     public Long getId() {
@@ -43,5 +45,13 @@ public class Topic {
 
     public void setGenre(String country) {
         this.genre = country;
+    }
+
+    public Integer getHits() {
+        return hits;
+    }
+
+    public void setHits(Integer hits) {
+        this.hits = hits;
     }
 }
