@@ -5,15 +5,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AccountService {
+public class TopicService {
 
-    private final AccountRepository repository;
+    private final TopicRepository repository;
 
-    public AccountService(AccountRepository repository) {
+    public TopicService(TopicRepository repository) {
         this.repository = repository;
     }
 
-    public List<Account> getAllAccounts() {
+    public List<Topic> getAllTopics() {
         return repository.findAll();
     }
 }

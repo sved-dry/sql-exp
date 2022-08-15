@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/account")
-public class AccountController {
+@RequestMapping(value = "/api/v1/topic")
+public class TopicController {
 
-    private final AccountService accountService;
+    private final TopicService topicService;
 
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
+    public TopicController(TopicService topicService) {
+        this.topicService = topicService;
     }
 
     @GetMapping(value = "")
     @ResponseBody
-    public ResponseEntity<List<Account>> getAllAccounts() {
-        List<Account> accounts = accountService.getAllAccounts();
+    public ResponseEntity<List<Topic>> getAllTopics() {
+        List<Topic> topics = topicService.getAllTopics();
 
-        return ResponseEntity.ok(accounts);
+        return ResponseEntity.ok(topics);
     }
 }
