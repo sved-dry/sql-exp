@@ -1,0 +1,18 @@
+services:
+  service:
+    build: .
+    restart: no
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql_db
+  db:
+    image: "mysql:8.0"
+    restart: no
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
