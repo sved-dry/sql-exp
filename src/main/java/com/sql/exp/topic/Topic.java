@@ -1,4 +1,4 @@
-package com.sql.exp;
+package com.sql.exp.topic;
 
 import javax.persistence.*;
 

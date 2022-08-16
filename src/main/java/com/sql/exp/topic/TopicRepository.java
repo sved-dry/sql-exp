@@ -1,4 +1,4 @@
-package com.sql.exp;
+package com.sql.exp.topic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

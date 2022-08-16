@@ -1,6 +1,5 @@
-package com.sql.exp;
+package com.sql.exp.topic;
 
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
