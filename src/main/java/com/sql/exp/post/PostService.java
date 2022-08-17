@@ -18,6 +18,10 @@ public class PostService {
         return repository.findAll();
     }
 
+    public List<Post> getPostsForTopic(Long topicId) {
+        return repository.findPostsByTopicId(topicId);
+
+    }
     public Post createPost(Post incomingPost) {
         return repository.save(incomingPost);
     }
