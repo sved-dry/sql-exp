@@ -1,14 +1,14 @@
-package com.sql.exp.post;
+package com.sql.exp.reply;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post",
+@Table(name = "reply",
         indexes = {
             @Index(columnList = "topicId"),
                 @Index(columnList = "userId")
 })
-public class Post {
+public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class Post {
 
     private String username;
 
-    public Post() {
+    public Reply() {
 
     }
 

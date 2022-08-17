@@ -1,4 +1,4 @@
-package com.sql.exp.post;
+package com.sql.exp.reply;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Long> {
-    Optional<Post> findPostById(Long id);
+public interface ReplyRepository extends JpaRepository<Reply, Long> {
+    Optional<Reply> findReplyById(Long id);
 
     @Query(
             """
-            SELECT n FROM Post n
+            SELECT n FROM Reply n
             WHERE n.topicId=:topicId
 """
 
     )
-    List<Post> findPostsByTopicId(@Param("topicId") Long topicId);
+    List<Reply> findRepliesTopicId(@Param("topicId") Long topicId);
 }

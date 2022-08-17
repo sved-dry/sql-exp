@@ -1,7 +1,7 @@
 package com.sql.exp.topic;
 
-import com.sql.exp.post.Post;
-import com.sql.exp.post.PostService;
+import com.sql.exp.reply.Reply;
+import com.sql.exp.reply.ReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,20 +19,20 @@ public class TopicController {
 
     private final TopicService topicService;
 
-    private final PostService postService;
+    private final ReplyService replyService;
 
-    private record PostResponse(String username,
-                                String content) {}
+    private record ReplyResponse(String username,
+                                 String content) {}
 
     private record TopicResponse(Long id,
                                  String question,
                                  String genre,
                                  Integer hits,
-                                 List<PostResponse> posts) {}
+                                 List<ReplyResponse> replies) {}
 
-    public TopicController(TopicService topicService, PostService postService) {
+    public TopicController(TopicService topicService, ReplyService replyService) {
         this.topicService = topicService;
-        this.postService = postService;
+        this.replyService = replyService;
     }
 
     @GetMapping(value = "")
@@ -42,19 +42,19 @@ public class TopicController {
         List<TopicResponse> responses = new ArrayList<>();
 
         topics.forEach(topic ->  {
-            List<Post> postsForTopic = postService.getPostsForTopic(topic.getId());
+            List<Reply> repliesForTopic = replyService.getRepliesForTopic(topic.getId());
 
-            List<PostResponse> postResponses = new ArrayList<>();
-            postsForTopic.forEach(post -> {
-                PostResponse postResponse = new PostResponse(post.getUsername(), post.getContent());
-                postResponses.add(postResponse);
+            List<ReplyResponse> replyResponses = new ArrayList<>();
+            repliesForTopic.forEach(reply -> {
+                ReplyResponse replyResponse = new ReplyResponse(reply.getUsername(), reply.getContent());
+                replyResponses.add(replyResponse);
             });
 
             TopicResponse response = new TopicResponse(topic.getId(),
                     topic.getQuestion(),
                     topic.getGenre(),
                     topic.getHits(),
-                    postResponses);
+                    replyResponses);
             responses.add(response);
         });
 
@@ -78,19 +78,19 @@ public class TopicController {
 
         topic.setHits(topic.getHits() + 1);
 
-        List<Post> postsForTopic = postService.getPostsForTopic(idLong);
+        List<Reply> repliesForTopic = replyService.getRepliesForTopic(idLong);
 
-        List<PostResponse> postResponses = new ArrayList<>();
-        postsForTopic.forEach(post -> {
-            PostResponse postResponse = new PostResponse(post.getUsername(), post.getContent());
-            postResponses.add(postResponse);
+        List<ReplyResponse> replyRespons = new ArrayList<>();
+        repliesForTopic.forEach(reply -> {
+            ReplyResponse replyResponse = new ReplyResponse(reply.getUsername(), reply.getContent());
+            replyRespons.add(replyResponse);
         });
 
         TopicResponse response = new TopicResponse(topic.getId(),
                 topic.getQuestion(),
                 topic.getGenre(),
                 topic.getHits(),
-                postResponses);
+                replyRespons);
 
         return ResponseEntity.ok(response);
     }
