@@ -1,5 +1,6 @@
 package com.sql.exp.topic;
 
+import com.sql.exp.post.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,12 @@ import java.util.concurrent.CompletableFuture;
 public class TopicController {
 
     private final TopicService topicService;
+
+    private record TopicAndPosts(Long id,
+                                 String question,
+                                 String genre,
+                                 Integer hits,
+                                 List<Post> posts) {}
 
     public TopicController(TopicService topicService) {
         this.topicService = topicService;

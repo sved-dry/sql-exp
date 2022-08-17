@@ -4,7 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "post",
-        indexes = @Index(columnList = "topicId"))
+        indexes = {
+            @Index(columnList = "topicId"),
+                @Index(columnList = "userId")
+})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,19 +15,14 @@ public class Post {
 
     private Long topicId;
 
+    private Long userId;
+
     private String content;
 
     private String username;
 
     public Post() {
 
-    }
-
-    public Post(Long id, Long topicId, String content, String username) {
-        this.id = id;
-        this.topicId = topicId;
-        this.content = content;
-        this.username = username;
     }
 
     public Long getId() {
@@ -57,5 +55,13 @@ public class Post {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
