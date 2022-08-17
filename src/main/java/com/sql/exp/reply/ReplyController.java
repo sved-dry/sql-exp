@@ -25,12 +25,17 @@ public class ReplyController {
         return new ResponseEntity<>(replies, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/api/v1/topic/{topicId}/reply",
+    @PostMapping(value = "/topic/{topicId}",
                     consumes = MediaType.APPLICATION_JSON_VALUE,
                     produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Reply> submitPost(@RequestBody Reply reply, @PathVariable  String topicId) {
+    public ResponseEntity<Reply> submitReply(@RequestBody Reply reply, @PathVariable  String topicId) {
         Long topicIdLong = Long.parseLong(topicId);
+
+        reply.setTopicId(topicIdLong);
+
+        // TODO make users, use bogus long value here for now
+        reply.setUserId(5L);
 
         Reply savedReply = replyService.createReply(reply);
 
